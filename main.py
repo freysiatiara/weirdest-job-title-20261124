@@ -16,6 +16,8 @@ def main() -> None:
         raise ValueError("title must be 1..60 characters, got %d" % len(title))
     if not title.strip():
         raise ValueError("title must not be only whitespace")
+    if "\n" in title or "\r" in title:
+        raise SystemExit("title must not contain a newline")
     output_path = os.environ.get("ENTRY_OUTPUT", "/output/entry.txt")
     parent = os.path.dirname(output_path)
     if parent:
